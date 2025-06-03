@@ -1,5 +1,6 @@
 "use strict";
 
+
 let tempF = 85;
 
 const tempValue = document.getElementById("tempValue")
@@ -59,3 +60,30 @@ displayCityName();
 
 
 // wave 6: // document.getElementById("cityNameInput").value = "";
+/*wave 3:
+const findLatitudeAndLongitude = (query, attempt = 1) => {
+    return axios.get('http://localhost:5000/location',
+        {
+            params: {
+                q: query,
+                format: 'json'
+            }
+        })
+        .then((response) => {
+            const { lat: latitude, lon: longitude } = response.data[0];
+            return { latitude, longitude };
+        })
+        .catch((error) => {
+            if (attempt >= 3) {
+                console.log(`Max attempts reached for ${query}`);
+                return null;
+            }
+            console.log(error)
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve(findLatitudeAndLongitude(query, attempt + 1));
+                }, 200 * attempt);
+            });
+        });
+};
+*/
