@@ -43,3 +43,19 @@ decreaseButton.addEventListener("click", function () {
     updateTempColor();
 });
 updateTempColor();
+
+
+
+const cityNameInput = document.getElementById("cityNameInput");
+const headerCityName = document.getElementById("headerCityName");
+
+function displayCityName() {
+    cityNameInput.addEventListener("input", () => {
+        headerCityName.textContent = cityNameInput.value;
+    });
+}
+
+displayCityName();
+
+
+// wave 6: // document.getElementById("cityNameInput").value = "";
