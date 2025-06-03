@@ -1,6 +1,5 @@
 "use strict";
 
-
 let tempF = 85;
 
 const tempValue = document.getElementById("tempValue")
@@ -88,7 +87,7 @@ const findLatitudeAndLongitude = (query, attempt = 1) => {
             });
         });
 };
-
+/*
 const findWeatherLatLon = (lat, lon, attempt = 1) => {
     return axios.get('http://localhost:5000/weather?TBD',
         {
@@ -116,4 +115,4 @@ findLatitudeAndLongitude(city)
         console.error(error);
         tempValue.textContent = "Error retrieving weather";
     });
-});
+});*/

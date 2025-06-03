@@ -13,7 +13,6 @@ body {
     grid-template-columns: 1fr 2fr;
     grid-template-rows: auto auto auto auto;
     grid-gap: 1rem;
-
     font-family: "Rubik", sans-serif;
     font-size: 18px;
     background-image: url("../ada-project-docs/assets/high-resolution-world-map-contemporary-style-7qvlrsu62yg6s2xm.webp");
@@ -72,6 +71,7 @@ body {
     text-decoration: none;
     display: inline-block;
     font-size: 18px;
+    font-family: "Rubik", sans-serif;
     border-radius: 100px;
     letter-spacing: 1px;
     line-height: 5;
@@ -94,21 +94,25 @@ body {
 }
 
 .city-name__section {
-    grid-row: 4;
-    grid-column: 1;
+    position: static;
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: center;
+    width: fit-content;
     color: white;
 }
 
 .garden__section {
-    position: fixed;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
-
+    position: static;
     background-color: rgba(99, 117, 144, 0.5);
     border-radius: 8px;
     padding: 1.5rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    grid-column: 2;
+    grid-row: 3;
+    justify-self: center;
+    width: fit-content;
+    margin-bottom: 2rem;
 }
 
 .temperature__content {
@@ -116,8 +120,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    /* justify-content: center; */
-    padding: auto;
+ 
     margin: auto;
     height: auto;
 }
@@ -127,8 +130,6 @@ body {
     margin-left: 1.8rem;
     white-space: pre-line;
     text-align: center;
-    /* padding-right: 1rem; */
-    /* margin-right: 1.5rem; */
 }
 
 .temperature__controls {
@@ -155,12 +156,25 @@ body {
 }
 
 .city-name__reset-btn {
-    border: 0;
+    border: none;
     background-color: #3f5887;
     color: white;
     border-radius: 8px;
     padding: 1rem;
     font-family: "Rubik", sans-serif;
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 100px;
+    letter-spacing: 1px;
+    line-height: 2;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    width: auto;
+    height: auto;
+}
+.city-name__reset-btn:hover {
+    background-color: #6a80b4e0;
+    transform: scale(1.05);
 }
 
 .red {
