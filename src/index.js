@@ -7,6 +7,8 @@ const tempValue = document.getElementById("tempValue")
 const increaseButton = document.getElementById("increaseTempControl")
 const decreaseButton = document.getElementById("decreaseTempControl");
 const landscape = document.getElementById("landscape");
+const currentTempButton = document.getElementById("currentTempButton");
+const cityNameElement = document.getElementById("headerCityName");
 
 function convertToCelsius(fahrenheit) {
     return Math.round((fahrenheit - 32) * 5 / 9);
@@ -21,7 +23,7 @@ function updateTempColor() {
         landscape.textContent = "🏜️☀️🏖️🌞🏝️☀️🌵🔥⛱️🌤️";
     } else if (tempF >= 70) {
         tempValue.classList.add("orange");
-        landscape.textContent = "🌿🌻🌼🌸🌷🪻☀️🦋🐝🌤️"; 
+        landscape.textContent = "🌿🌻🌼🌸🌷🪻☀️🦋🐝🌤️";
     } else if (tempF >= 60) {
         tempValue.classList.add("yellow");
         landscape.textContent = "🌳🍂🪵🍃🦉🍁🐿️🍄🍁⛅";
@@ -60,7 +62,7 @@ displayCityName();
 
 
 // wave 6: // document.getElementById("cityNameInput").value = "";
-/*wave 3:
+// wave 4: //
 const findLatitudeAndLongitude = (query, attempt = 1) => {
     return axios.get('http://localhost:5000/location',
         {
@@ -86,4 +88,32 @@ const findLatitudeAndLongitude = (query, attempt = 1) => {
             });
         });
 };
-*/
+
+const findWeatherLatLon = (lat, lon, attempt = 1) => {
+    return axios.get('http://localhost:5000/weather?TBD',
+        {
+            params: { lat, lon }
+        }).them((response)) => {
+
+}
+
+    }
+
+currentTempButton.addEventListener("click", () => {
+    const city = 
+
+}
+
+findLatitudeAndLongitude(city)
+    .then(({ latitude, longitude }) => {
+        if (!latitude || !longitude) {
+            tempValue.textContent = "Could not get location.";
+            return null;
+        }
+        return findWeatherLatLon(latitude, longitude);
+    })
+    .catch((error) => {
+        console.error(error);
+        tempValue.textContent = "Error retrieving weather";
+    });
+});
