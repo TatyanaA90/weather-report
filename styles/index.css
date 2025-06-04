@@ -238,7 +238,7 @@ body {
     white-space: nowrap;
     font-size: 16px;
     font-weight: 400;
-    animation: scroll-left 40s linear infinite; 
+    animation: scroll-left 80s linear infinite; 
 }
 
 .scrolling-text-item {

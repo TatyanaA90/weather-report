@@ -22,7 +22,6 @@ function updateTempColor() {
     let tempC = convertToCelsius(tempF);
     tempValue.textContent = tempF + "°F\n⎯\n" + tempC + "°C";
 
-    // helps with reset button back to original temp + temp color
     tempValue.classList.remove("red", "orange", "yellow", "green", "teal");
 
     if (tempF >= 80) {
@@ -162,8 +161,6 @@ function resetCityName() {
         headerCityName.textContent = "";
         tempF = 85;
         updateTempColor();
-        // color stays green when I reset? See line 24 for the fix!
-        // reset the sky to default too???
         sky.textContent = "";
         skySelect.value = "select_one";
     });
