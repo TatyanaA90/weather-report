@@ -20,9 +20,9 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 100vh;
-    border-left: 5px solid white;
-    padding-left: 2rem;
+    min-height: fit-content;
+    /* border-left: 5px solid white; */
+    /* padding-left: 2rem; */
 }
 
 .header__header {
@@ -91,7 +91,7 @@ body {
     grid-row: 3;
     grid-column: 1;
     color: white;
-    height: 250px;
+    /* height: 250px; */
 }
 
 .city-name__section {
@@ -115,7 +115,7 @@ body {
     justify-self: center;
     width: fit-content;
     margin-bottom: 2rem;
-    height: 250px;
+    /* height: 250px; */
 }
 
 .temperature__content {
@@ -153,7 +153,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    height: 150px;
+    /* height: 150px; */
 }
 
 .city-name__reset-btn {
@@ -229,7 +229,7 @@ body {
     color: #e9e2e2;
     border-top: 2px solid #e9e2e2;
     overflow: hidden;
-    height: 40px;
+    /* height: 40px; */
 }
 
 .scrolling-text-inner {
