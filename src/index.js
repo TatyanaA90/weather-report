@@ -8,6 +8,9 @@ const decreaseButton = document.getElementById("decreaseTempControl");
 const landscape = document.getElementById("landscape");
 const currentTempButton = document.getElementById("currentTempButton");
 const cityNameElement = document.getElementById("headerCityName");
+const cityNameInput = document.getElementById("cityNameInput");
+const headerCityName = document.getElementById("headerCityName");
+const cityNameReset = document.getElementById("cityNameReset");
 
 function convertToCelsius(fahrenheit) {
     return Math.round((fahrenheit - 32) * 5 / 9);
@@ -16,6 +19,9 @@ function convertToCelsius(fahrenheit) {
 function updateTempColor() {
     let tempC = convertToCelsius(tempF);
     tempValue.textContent = tempF + "°F\n⎯\n" + tempC + "°C";
+
+    // helps with reset button back to original temp + temp color
+    tempValue.classList.remove("red", "orange", "yellow", "green", "teal");
 
     if (tempF >= 80) {
         tempValue.classList.add("red");
@@ -47,10 +53,6 @@ decreaseButton.addEventListener("click", function () {
 updateTempColor();
 
 
-
-const cityNameInput = document.getElementById("cityNameInput");
-const headerCityName = document.getElementById("headerCityName");
-
 function displayCityName() {
     cityNameInput.addEventListener("input", () => {
         headerCityName.textContent = cityNameInput.value;
@@ -60,7 +62,6 @@ function displayCityName() {
 displayCityName();
 
 
-// wave 6: // document.getElementById("cityNameInput").value = "";
 // retry helper func with attemps but not nessasary for this project
 // wave 4: //
 const waitAttempt = (request, attempt = 1) => {
@@ -120,3 +121,37 @@ currentTempButton.addEventListener("click", () => {
             updateTempColor();
         });
 });
+
+// wave 5: //
+// Relevant HTML:
+//   </section>
+//   <section class="sky__section">
+//       <h2>Sky</h2>
+//       <select id="skySelect">
+//            <!-- sky options here -->
+//        </select>
+//   </section>
+
+const skySelect = document.getElementById("skySelect");
+
+function selectTheSkyDropdown () {
+    skySelect.addEventListener("drop", () => {
+        
+    })
+}
+
+// wave 6: //
+
+function resetCityName() {
+    cityNameReset.addEventListener("click", () => {
+        cityNameInput.value = "";
+        headerCityName.textContent = "";
+        tempF = 85;
+        updateTempColor();
+        // color stays green when I reset? See line 24 for the fix!
+        // reset the sky to default too???
+    });
+}
+
+resetCityName();
+
