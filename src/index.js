@@ -11,6 +11,8 @@ const cityNameElement = document.getElementById("headerCityName");
 const cityNameInput = document.getElementById("cityNameInput");
 const headerCityName = document.getElementById("headerCityName");
 const cityNameReset = document.getElementById("cityNameReset");
+const skySelect = document.getElementById("skySelect");
+const sky = document.getElementById("sky")
 
 function convertToCelsius(fahrenheit) {
     return Math.round((fahrenheit - 32) * 5 / 9);
@@ -128,23 +130,29 @@ currentTempButton.addEventListener("click", () => {
         });
 });
 
-// wave 5: //
-// Relevant HTML:
-//   </section>
-//   <section class="sky__section">
-//       <h2>Sky</h2>
-//       <select id="skySelect">
-//            <!-- sky options here -->
-//        </select>
-//   </section>
-
-const skySelect = document.getElementById("skySelect");
+// wave 5: object loop up for scalability refactor?//
+// we need to fix the weather garden spacing
 
 function selectTheSkyDropdown () {
-    skySelect.addEventListener("drop", () => {
-        
+    skySelect.addEventListener("change", () => {
+        const selectedSky = skySelect.value;
+        if (selectedSky === 'sunny') {
+            sky.textContent = "☁️ ☁️ ☁️ ☀️ ☁️ ☁️";
+        } else if (selectedSky === 'cloudy') {
+            sky.textContent = "☁️☁️ ☁️ ☁️☁️ ☁️ 🌤 ☁️ ☁️☁️";
+        } else if (selectedSky === 'rainy') {
+            sky.textContent = "🌧🌈🌧🌧💧🌧🌦🌧💧🌧🌧";
+        } else if (selectedSky === 'snowy') {
+            sky.textContent = "🌨❄️🌨🌨❄️❄️🌨❄️🌨❄️❄️🌨🌨";
+        } else if (selectedSky === 'select_one') {
+            sky.textContent = ""
+        }
     })
 }
+
+selectTheSkyDropdown ()
+
+
 
 // wave 6: //
 
@@ -156,6 +164,8 @@ function resetCityName() {
         updateTempColor();
         // color stays green when I reset? See line 24 for the fix!
         // reset the sky to default too???
+        sky.textContent = "";
+        skySelect.value = "select_one";
     });
 }
 
