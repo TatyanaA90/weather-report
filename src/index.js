@@ -61,58 +61,62 @@ displayCityName();
 
 
 // wave 6: // document.getElementById("cityNameInput").value = "";
+// retry helper func with attemps but not nessasary for this project
 // wave 4: //
-const findLatitudeAndLongitude = (query, attempt = 1) => {
-    return axios.get('http://localhost:5000/location',
-        {
+const waitAttempt = (request, attempt = 1) => {
+    return request().catch((error) => {
+        if (attempt >= 3) {
+            console.log("Max attempts reached");
+            return null;
+        }
+        console.log(error);
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(waitAttempt(request, attempt + 1));
+            }, 200 * attempt);
+        });
+    });
+};
+
+const findLatitudeAndLongitude = (query) => {
+    const request = () => {
+        return axios.get('http://localhost:5000/location', {
             params: {
                 q: query,
                 format: 'json'
             }
-        })
-        .then((response) => {
+        }).then((response) => {
             const { lat: latitude, lon: longitude } = response.data[0];
             return { latitude, longitude };
-        })
-        .catch((error) => {
-            if (attempt >= 3) {
-                console.log(`Max attempts reached for ${query}`);
-                return null;
-            }
-            console.log(error)
-            return new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve(findLatitudeAndLongitude(query, attempt + 1));
-                }, 200 * attempt);
-            });
         });
+    };
+
+    return waitAttempt(request);
 };
-/*
-const findWeatherLatLon = (lat, lon, attempt = 1) => {
-    return axios.get('http://localhost:5000/weather?TBD',
-        {
+
+const findWeatherLatLon = (lat, lon) => {
+    const request = () => {
+        return axios.get("http://localhost:5000/weather", {
             params: { lat, lon }
-        }).them((response)) => {
+        }).then((response) => {
+            const tempK = response.data.main.temp;
+            const tempC = Math.round(tempK - 273.15);
+            const tempF = Math.round((tempC * 9) / 5 + 32);
+            return { tempF, tempC };
+        });
+    };
 
-}
-
-    }
+    return waitAttempt(request);
+};
 
 currentTempButton.addEventListener("click", () => {
-    const city = 
+    const city = cityNameElement.textContent.trim();
+    if (!city) return;
 
-}
-
-findLatitudeAndLongitude(city)
-    .then(({ latitude, longitude }) => {
-        if (!latitude || !longitude) {
-            tempValue.textContent = "Could not get location.";
-            return null;
-        }
-        return findWeatherLatLon(latitude, longitude);
-    })
-    .catch((error) => {
-        console.error(error);
-        tempValue.textContent = "Error retrieving weather";
-    });
-});*/
+    findLatitudeAndLongitude(city)
+        .then(({ latitude, longitude }) => findWeatherLatLon(latitude, longitude))
+        .then((result) => {
+            tempF = result.tempF;
+            updateTempColor();
+        });
+});
