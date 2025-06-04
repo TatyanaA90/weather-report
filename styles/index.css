@@ -56,7 +56,6 @@ body {
     margin-bottom: 1rem;
 }
 
-
 .temperature__section {
     grid-row: 2;
     color: white;
@@ -89,8 +88,8 @@ body {
 .sky__section {
     grid-row: 3;
     grid-column: 1;
-    margin-bottom: 1rem;
     color: white;
+    height: 250px;
 }
 
 .city-name__section {
@@ -100,12 +99,13 @@ body {
     justify-self: center;
     width: fit-content;
     color: white;
+    height: fit-content;
 }
 
 .garden__section {
     position: static;
     background-color: rgba(99, 117, 144, 0.5);
-    border-radius: 8px;
+    border-radius: 8x;
     padding: 1.5rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     grid-column: 2;
@@ -146,13 +146,11 @@ body {
     margin: auto;
     padding-top: 1rem;
     font-size: 2em;
-
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-
-    min-height: 100px;
+    height: 150px;
 }
 
 .city-name__reset-btn {
