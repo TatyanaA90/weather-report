@@ -1,6 +1,6 @@
 "use strict";
 
-let tempF = 85;
+let tempF = 0;
 
 const tempValue = document.getElementById("tempValue")
 const increaseButton = document.getElementById("increaseTempControl")
@@ -125,9 +125,22 @@ currentTempButton.addEventListener("click", () => {
 });
 
 // wave 5 //
-function selectTheSkyDropdown () {
+function updateSkyEmoji(selectedSky) {
+    const skySection = document.querySelector(".sky__section");
+    const emojiMap = {
+        sunny: "☀️",
+        cloudy: "☁️",
+        rainy: "🌧",
+        snowy: "❄️",
+        select_one: ""
+    };
+    skySection.dataset.emoji = emojiMap[selectedSky] || "";
+}
+
+function selectTheSkyDropdown() {
     skySelect.addEventListener("change", () => {
         const selectedSky = skySelect.value;
+
         if (selectedSky === 'sunny') {
             sky.textContent = "☁️ ☁️ ☁️ ☀️ ☁️ ☁️";
         } else if (selectedSky === 'cloudy') {
@@ -136,12 +149,14 @@ function selectTheSkyDropdown () {
             sky.textContent = "🌧🌈🌧🌧💧🌧🌦🌧💧🌧🌧";
         } else if (selectedSky === 'snowy') {
             sky.textContent = "🌨❄️🌨🌨❄️❄️🌨❄️🌨❄️❄️🌨🌨";
-        } else if (selectedSky === 'select_one') {
-            sky.textContent = ""
+        } else {
+            sky.textContent = "";
         }
-    })
+
+        updateSkyEmoji(selectedSky); 
+    });
 }
-selectTheSkyDropdown ()
+selectTheSkyDropdown();
 
 // wave 6: //
 function resetCityName() {
@@ -155,3 +170,9 @@ function resetCityName() {
     });
 }
 resetCityName();
+
+document.addEventListener("DOMContentLoaded", () => {
+    skySelect.value = "sunny";
+    sky.textContent = "☁️ ☀️☀️☀️☀️☀️☁️";
+    updateSkyEmoji("sunny");
+});

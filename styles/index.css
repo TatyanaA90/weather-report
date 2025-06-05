@@ -37,7 +37,7 @@ main {
     color: white;
 }
 
-.header__header>h1 {
+.header__header h1 {
     margin-right: 2rem;
     font-size: 3em;
 }
@@ -52,9 +52,11 @@ main {
     content: "✨";
 }
 
+/* Section Shared Styles */
 .temperature__section,
 .sky__section,
-.city-name__section {
+.city-name__section,
+.garden__section {
     border-radius: 8px;
     padding: 1.5rem;
     background-color: rgba(99, 117, 144, 0.397);
@@ -62,6 +64,7 @@ main {
     margin-bottom: 1rem;
 }
 
+/* Temperature and Sky */
 .temperature__section {
     grid-column: 2;
     grid-row: 2;
@@ -72,28 +75,31 @@ main {
     grid-column: 2;
     grid-row: 3;
     color: white;
+    position: relative;
+    overflow: visible;
+    z-index: 10;
+    transition: background 0.5s ease;
 }
 
 .city-name__section {
     grid-column: 3;
     grid-row: 2;
     justify-self: center;
-    width: fit-content;
     color: white;
 }
 
-.garden__section {
-    grid-column: 3;
-    grid-row: 3;
-    justify-self: center;
-    width: fit-content;
-    background-color: rgba(99, 117, 144, 0.5);
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    margin-bottom: 2rem;
+.sky__section::before {
+    content: attr(data-emoji);
+    position: absolute;
+    font-size: 6rem;
+    opacity: 1;
+    top: 20%;
+    left: 50%;
+    pointer-events: none;
+    animation: floatEmoji 3s ease-in-out infinite;
 }
 
+/* Garden */
 .garden__section>h2 {
     color: white;
 }
@@ -109,6 +115,14 @@ main {
     gap: 2rem;
 }
 
+.garden__section {
+    grid-column: 3;
+    grid-row: 3;
+    justify-self: center;
+    width: fit-content;
+}
+
+/* Temperature content */
 .temperature__content {
     display: flex;
     justify-content: space-around;
@@ -129,37 +143,20 @@ main {
     align-items: center;
 }
 
-.temperature__section button {
+.temperature__section button,
+.city-name__reset-btn {
     background-color: #4d648fcf;
     border: none;
     color: white;
-    padding: 6px 16px;
     font-size: 18px;
     border-radius: 100px;
+    padding: 1rem 1.5rem;
     letter-spacing: 1px;
-    line-height: 5;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
 
-.temperature__section button:hover {
-    background-color: #6a80b4e0;
-    transform: scale(1.05);
-}
-
-.city-name__reset-btn {
-    border: none;
-    background-color: #3f5887;
-    color: white;
-    border-radius: 100px;
-    padding: 1rem;
-    font-size: 18px;
-    letter-spacing: 1px;
-    line-height: 2;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-}
-
+.temperature__section button:hover,
 .city-name__reset-btn:hover {
     background-color: #6a80b4e0;
     transform: scale(1.05);
@@ -189,22 +186,7 @@ main {
     color: teal;
 }
 
-.cloudy {
-    background-color: lightgrey;
-}
-
-.sunny {
-    background-color: rgb(221, 255, 255);
-}
-
-.rainy {
-    background-color: lightblue;
-}
-
-.snowy {
-    background-color: lightsteelblue;
-}
-
+/* Scrolling Text */
 .scrolling-text-container {
     position: fixed;
     bottom: 0;
@@ -233,6 +215,7 @@ main {
     animation-play-state: paused;
 }
 
+/* Animations */
 @keyframes scroll-left {
     0% {
         transform: translateX(0%);
@@ -240,5 +223,17 @@ main {
 
     100% {
         transform: translateX(-50%);
+    }
+}
+
+@keyframes floatEmoji {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
     }
 }
