@@ -29,11 +29,12 @@ main {
 }
 
 .header__header {
-    color: white;
-    grid-column: span 3;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    margin: 2rem auto 3rem 0;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: white;
 }
 
 .header__header>h1 {
