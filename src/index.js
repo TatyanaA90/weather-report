@@ -23,22 +23,20 @@ function updateTempColor() {
     tempValue.textContent = tempF + "°F\n⎯\n" + tempC + "°C";
 
     tempValue.classList.remove("red", "orange", "yellow", "green", "teal");
-    // tempValue.className = "";
 
     if (tempF >= 80) {
         tempValue.classList.add("red");
         landscape.textContent = "🏜️☀️🏖️🌞🏝️☀️🌵🔥⛱️🌤️";
-
-            skySelect.value = "sunny";
-            updateSkyEmoji("sunny");
-            sky.textContent = "☁️ ☁️ ☁️ ☀️ ☁️ ☁️";
+        skySelect.value = "sunny";
+        updateSkyEmoji("sunny");
+        sky.textContent = "☁️ ☁️ ☁️ ☀️ ☁️ ☁️";
 
     } else if (tempF >= 70) {
         tempValue.classList.add("orange");
         landscape.textContent = "🌿🌻🌼🌸🌷🪻☀️🦋🐝🌤️";
-            skySelect.value = "sunny";
-            updateSkyEmoji("sunny");
-            sky.textContent = "☁️ ☁️ ☁️ ☀️ ☁️ ☁️";
+        skySelect.value = "sunny";
+        updateSkyEmoji("sunny");
+        sky.textContent = "☁️ ☁️ ☁️ ☀️ ☁️ ☁️";
 
     } else if (tempF >= 60) {
         tempValue.classList.add("yellow");
@@ -89,10 +87,7 @@ const getWithRetry = (url, queryParams, attempt = 1) => {
         params: queryParams
     }).then((response) => {
         const data = response.data;
-        // Since our proxy always responds with status code 200, 
-        // we need another way to detect when to retry.
-        // After some research, it turns out that if data.error is not empty, 
-        // it indicates we should retry.
+
         if (data.error) {
             if (attempt >= 5) {
                 console.log("Max attempts reached!");
@@ -174,7 +169,6 @@ function selectTheSkyDropdown() {
         } else {
             sky.textContent = "";
         }
-
         updateSkyEmoji(selectedSky); 
     });
 }
@@ -192,8 +186,8 @@ function resetCityName() {
         updateSkyEmoji("select_one");
     });
 }
-resetCityName();
 
+resetCityName();
 document.addEventListener("DOMContentLoaded", () => {
     skySelect.value = "select_one";
     sky.textContent = "🌨❄️🌨🌨❄️❄️🌨❄️🌨❄️❄️🌨🌨";
