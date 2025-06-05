@@ -201,9 +201,10 @@ main {
 .scrolling-text-inner {
     display: flex;
     white-space: nowrap;
+    width: max-content;
     font-size: 20px;
     font-weight: 400;
-    animation: scroll-left 10s linear infinite;
+    animation: scroll-left 20s linear infinite;
 }
 
 .scrolling-text-track span {

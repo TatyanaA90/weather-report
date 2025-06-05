@@ -1,6 +1,7 @@
 "use strict";
 
 let tempF = 0;
+let userChangedSky = false;
 
 const tempValue = document.getElementById("tempValue")
 const increaseButton = document.getElementById("increaseTempControl")
@@ -23,22 +24,48 @@ function updateTempColor() {
     tempValue.textContent = tempF + "°F\n⎯\n" + tempC + "°C";
 
     tempValue.classList.remove("red", "orange", "yellow", "green", "teal");
+    // tempValue.className = "";
 
     if (tempF >= 80) {
         tempValue.classList.add("red");
         landscape.textContent = "🏜️☀️🏖️🌞🏝️☀️🌵🔥⛱️🌤️";
+        if (!userChangedSky) {
+            skySelect.value = "sunny";
+            updateSkyEmoji("sunny");
+            sky.textContent = "☁️ ☁️ ☁️ ☀️ ☁️ ☁️";
+        }
     } else if (tempF >= 70) {
         tempValue.classList.add("orange");
         landscape.textContent = "🌿🌻🌼🌸🌷🪻☀️🦋🐝🌤️";
+        if (!userChangedSky) {
+            skySelect.value = "sunny";
+            updateSkyEmoji("sunny");
+            sky.textContent = "☁️ ☁️ ☁️ ☀️ ☁️ ☁️";
+        }
     } else if (tempF >= 60) {
         tempValue.classList.add("yellow");
         landscape.textContent = "🌳🍂🪵🍃🦉🍁🐿️🍄🍁⛅";
+        if (!userChangedSky) {
+            skySelect.value = "cloudy";
+            updateSkyEmoji("cloudy");
+            sky.textContent = "☁️☁️ ☁️ ☁️☁️ ☁️ 🌤 ☁️ ☁️☁️";
+        }
     } else if (tempF >= 50) {
         tempValue.classList.add("green");
         landscape.textContent = "🍁🌦️🌾🌤️🐛🌼🌦️🍂🪲☘️";
+        if (!userChangedSky) {
+            skySelect.value = "cloudy";
+            updateSkyEmoji("cloudy");
+            sky.textContent = "☁️☁️ ☁️ ☁️☁️ ☁️ 🌤 ☁️ ☁️☁️";
+        }
     } else {
         tempValue.classList.add("teal");
         landscape.textContent = "❄️⛄🌨️🌬️⛄🌲☃️❄️🥶🌨️";
+        if (!userChangedSky) {
+            skySelect.value = "snowy";
+            updateSkyEmoji("snowy");
+            sky.textContent = "🌨❄️🌨🌨❄️❄️🌨❄️🌨❄️❄️🌨🌨";
+        }
     }
 }
 
@@ -132,7 +159,7 @@ function updateSkyEmoji(selectedSky) {
         cloudy: "☁️",
         rainy: "🌧",
         snowy: "❄️",
-        select_one: ""
+        select_one: "👈🏼"
     };
     skySection.dataset.emoji = emojiMap[selectedSky] || "";
 }
@@ -140,6 +167,8 @@ function updateSkyEmoji(selectedSky) {
 function selectTheSkyDropdown() {
     skySelect.addEventListener("change", () => {
         const selectedSky = skySelect.value;
+        userChangedSky = true;
+        updateSkyEmoji(selectedSky);
 
         if (selectedSky === 'sunny') {
             sky.textContent = "☁️ ☁️ ☁️ ☀️ ☁️ ☁️";
@@ -163,16 +192,18 @@ function resetCityName() {
     cityNameReset.addEventListener("click", () => {
         cityNameInput.value = "";
         headerCityName.textContent = "";
-        tempF = 85;
+        tempF = 0;
         updateTempColor();
         sky.textContent = "";
         skySelect.value = "select_one";
+        updateSkyEmoji("select_one");
+        // userChangedSky = false;
     });
 }
 resetCityName();
 
 document.addEventListener("DOMContentLoaded", () => {
-    skySelect.value = "sunny";
-    sky.textContent = "☁️ ☀️☀️☀️☀️☀️☁️";
-    updateSkyEmoji("sunny");
+    skySelect.value = "select_one";
+    sky.textContent = "🌨❄️🌨🌨❄️❄️🌨❄️🌨❄️❄️🌨🌨";
+    updateSkyEmoji("select_one");
 });
