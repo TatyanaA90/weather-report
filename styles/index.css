@@ -4,25 +4,28 @@ h2 {
 
 html,
 body {
-    height: 100%;
     margin: 0;
     padding: 0;
-}
-
-body {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: auto auto auto auto;
-    grid-gap: 1rem;
+    min-height: 100vh;
     font-family: "Rubik", sans-serif;
     font-size: 18px;
+}
+
+.page-background {
     background-image: url("../ada-project-docs/assets/high-resolution-world-map-contemporary-style-7qvlrsu62yg6s2xm.webp");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: fit-content;
-    /* border-left: 5px solid white; */
-    /* padding-left: 2rem; */
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 100px 1fr 2fr;
+    grid-template-rows: auto auto auto auto;
+    gap: 1rem;
 }
 
 .header__header {
@@ -59,73 +62,57 @@ body {
 }
 
 .temperature__section {
+    grid-column: 2;
     grid-row: 2;
     color: white;
-}
-
-.temperature__section button {
-    background-color: #4d648fcf;
-    border: none;
-    color: white;
-    padding: 6px 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-    font-family: "Rubik", sans-serif;
-    border-radius: 100px;
-    letter-spacing: 1px;
-    line-height: 5;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    width: auto;
-    height: auto;
-}
-
-.temperature__section button:hover {
-    background-color: #6a80b4e0;
-    transform: scale(1.05);
 }
 
 .sky__section {
+    grid-column: 2;
     grid-row: 3;
-    grid-column: 1;
     color: white;
-    /* height: 250px; */
 }
 
 .city-name__section {
-    position: static;
-    grid-column: 2;
+    grid-column: 3;
     grid-row: 2;
     justify-self: center;
     width: fit-content;
     color: white;
-    height: fit-content;
 }
 
 .garden__section {
-    position: static;
-    background-color: rgba(99, 117, 144, 0.5);
-    border-radius: 8x;
-    padding: 1.5rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    grid-column: 2;
+    grid-column: 3;
     grid-row: 3;
     justify-self: center;
     width: fit-content;
+    background-color: rgba(99, 117, 144, 0.5);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     margin-bottom: 2rem;
-    /* height: 250px; */
+}
+
+.garden__section>h2 {
+    color: white;
+}
+
+.garden__content {
+    margin: auto;
+    padding-top: 1rem;
+    font-size: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
 }
 
 .temperature__content {
     display: flex;
-    flex-direction: row;
-    align-items: center;
     justify-content: space-around;
-
+    align-items: center;
     margin: auto;
-    height: auto;
 }
 
 #tempValue {
@@ -141,37 +128,35 @@ body {
     align-items: center;
 }
 
-.garden__section>h2 {
+.temperature__section button {
+    background-color: #4d648fcf;
+    border: none;
     color: white;
+    padding: 6px 16px;
+    font-size: 18px;
+    border-radius: 100px;
+    letter-spacing: 1px;
+    line-height: 5;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 }
 
-.garden__content {
-    margin: auto;
-    padding-top: 1rem;
-    font-size: 2em;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    /* height: 150px; */
+.temperature__section button:hover {
+    background-color: #6a80b4e0;
+    transform: scale(1.05);
 }
 
 .city-name__reset-btn {
     border: none;
     background-color: #3f5887;
     color: white;
-    border-radius: 8px;
-    padding: 1rem;
-    font-family: "Rubik", sans-serif;
-    display: inline-block;
-    font-size: 18px;
     border-radius: 100px;
+    padding: 1rem;
+    font-size: 18px;
     letter-spacing: 1px;
     line-height: 2;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    width: auto;
-    height: auto;
 }
 
 .city-name__reset-btn:hover {
@@ -227,29 +212,23 @@ body {
     z-index: 1000;
     background-color: rgba(99, 117, 144, 0.397);
     color: #e9e2e2;
-    border-top: 2px solid #e9e2e2;
     overflow: hidden;
-    /* height: 40px; */
 }
 
 .scrolling-text-inner {
     display: flex;
     white-space: nowrap;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 400;
-    animation: scroll-left 30s linear infinite;
+    animation: scroll-left 10s linear infinite;
 }
 
-.scrolling-text-item {
+.scrolling-text-track span {
     padding: 0 30px;
+    display: inline-block;
 }
 
-.scrolling-text-inner>div {
-    animation: var(--direction) var(--marquee-speed) linear infinite;
-}
-
-
-.scrolling-text-container:hover .scrolling-text-inner>div {
+.scrolling-text-container:hover .scrolling-text-inner {
     animation-play-state: paused;
 }
 
@@ -259,6 +238,6 @@ body {
     }
 
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-50%);
     }
 }

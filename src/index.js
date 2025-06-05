@@ -59,13 +59,10 @@ function displayCityName() {
         headerCityName.textContent = cityNameInput.value;
     });
 }
-
 displayCityName();
 
-
-// retry helper func with attemps but not nessasary for this project
+// retry helper function
 // wave 4: //
-
 const getWithRetry = (url, queryParams, attempt = 1) => {
     return axios.get(url, {
         params: queryParams
@@ -87,7 +84,6 @@ const getWithRetry = (url, queryParams, attempt = 1) => {
                 }, 600 * attempt);
             });
         }
-
         return response;
     })
 };
@@ -116,7 +112,6 @@ const findWeatherLatLon = (lat, lon) => {
     });
 };
 
-
 currentTempButton.addEventListener("click", () => {
     const city = cityNameElement.textContent.trim();
     if (!city) return;
@@ -129,9 +124,7 @@ currentTempButton.addEventListener("click", () => {
         });
 });
 
-// wave 5: object loop up for scalability refactor?//
-// we need to fix the weather garden spacing
-
+// wave 5 //
 function selectTheSkyDropdown () {
     skySelect.addEventListener("change", () => {
         const selectedSky = skySelect.value;
@@ -148,13 +141,9 @@ function selectTheSkyDropdown () {
         }
     })
 }
-
 selectTheSkyDropdown ()
 
-
-
 // wave 6: //
-
 function resetCityName() {
     cityNameReset.addEventListener("click", () => {
         cityNameInput.value = "";
@@ -165,6 +154,4 @@ function resetCityName() {
         skySelect.value = "select_one";
     });
 }
-
 resetCityName();
-
