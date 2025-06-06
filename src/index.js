@@ -105,7 +105,8 @@ const getWithRetry = (url, queryParams, attempt = 1) => {
 };
 
 const findLatitudeAndLongitude = (query) => {
-    const url = "http://localhost:5000/location";
+    //const url = "http://localhost:5000/location";
+    const url = "https://weather-report-proxy-server-qf02.onrender.com/location";
     return getWithRetry(url, { q: query, format: 'json' }).then((response) => {
         if (!response.data) {
             return null;
@@ -115,7 +116,8 @@ const findLatitudeAndLongitude = (query) => {
     });
 };
 const findWeatherLatLon = (lat, lon) => {
-    const url = "http://localhost:5000/weather";
+    //const url = "http://localhost:5000/weather";
+    const url = "https://weather-report-proxy-server-qf02.onrender.com/weather";
 
     return getWithRetry(url, { lat, lon }).then((response) => {
         if (!response.data) {
